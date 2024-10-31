@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dao.ShangpinpingjiaDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.entity.ShangpinpingjiaEntity" id="shangpinpingjiaMap">
+        <result property="dingdanbianhao" column="dingdanbianhao"/>
+        <result property="shangpinmingcheng" column="shangpinmingcheng"/>
+        <result property="shangpinfenlei" column="shangpinfenlei"/>
+        <result property="pinpai" column="pinpai"/>
+        <result property="pingfen" column="pingfen"/>
+        <result property="pingjianeirong" column="pingjianeirong"/>
+        <result property="tianjiatupian" column="tianjiatupian"/>
+        <result property="pingjiariqi" column="pingjiariqi"/>
+        <result property="yonghuming" column="yonghuming"/>
+        <result property="lianxidianhua" column="lianxidianhua"/>
+        <result property="sfsh" column="sfsh"/>
+        <result property="shhf" column="shhf"/>
+    </resultMap>
+
+
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        a.id as id
+        ,a.addtime as addtime
+        ,a.dingdanbianhao as dingdanbianhao
+        ,a.shangpinmingcheng as shangpinmingcheng
+        ,a.shangpinfenlei as shangpinfenlei
+        ,a.pinpai as pinpai
+        ,a.pingfen as pingfen
+        ,a.pingjianeirong as pingjianeirong
+        ,a.tianjiatupian as tianjiatupian
+        ,a.pingjiariqi as pingjiariqi
+        ,a.yonghuming as yonghuming
+        ,a.lianxidianhua as lianxidianhua
+        ,a.sfsh as sfsh
+        ,a.shhf as shhf
+    </sql>
+
+    <select id="selectListView" parameterType="map" resultType="com.entity.view.ShangpinpingjiaView" >
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM Shangpinpingjia  a
+        <where>
+            <if test=" params.dingdanbianhao != '' and params.dingdanbianhao != null and params.dingdanbianhao != 'null' ">
+                and a.dingdanbianhao like CONCAT('%',#{params.dingdanbianhao},'%')
+            </if>
+            <if test=" params.shangpinmingcheng != '' and params.shangpinmingcheng != null and params.shangpinmingcheng != 'null' ">
+                and a.shangpinmingcheng like CONCAT('%',#{params.shangpinmingcheng},'%')
+            </if>
+            <if test=" params.shangpinfenlei != '' and params.shangpinfenlei != null and params.shangpinfenlei != 'null' ">
+                and a.shangpinfenlei like CONCAT('%',#{params.shangpinfenlei},'%')
+            </if>
+            <if test=" params.pinpai != '' and params.pinpai != null and params.pinpai != 'null' ">
+                and a.pinpai like CONCAT('%',#{params.pinpai},'%')
+            </if>
+            <if test=" params.pingfen != '' and params.pingfen != null and params.pingfen != 'null' ">
+                and a.pingfen like CONCAT('%',#{params.pingfen},'%')
+            </if>
+            <if test=" params.pingjianeirong != '' and params.pingjianeirong != null and params.pingjianeirong != 'null' ">
+                and a.pingjianeirong like CONCAT('%',#{params.pingjianeirong},'%')
+            </if>
+            <if test=" params.tianjiatupian != '' and params.tianjiatupian != null and params.tianjiatupian != 'null' ">
+                and a.tianjiatupian like CONCAT('%',#{params.tianjiatupian},'%')
+            </if>
+            <if test=" params.yonghuming != '' and params.yonghuming != null and params.yonghuming != 'null' ">
+                and a.yonghuming like CONCAT('%',#{params.yonghuming},'%')
+            </if>
+            <if test=" params.lianxidianhua != '' and params.lianxidianhua != null and params.lianxidianhua != 'null' ">
+                and a.lianxidianhua like CONCAT('%',#{params.lianxidianhua},'%')
+            </if>
+            <if test=" params.sfsh != '' and params.sfsh != null and params.sfsh != 'null' ">
+                and a.sfsh like CONCAT('%',#{params.sfsh},'%')
+            </if>
+            <if test=" params.shhf != '' and params.shhf != null and params.shhf != 'null' ">
+                and a.shhf like CONCAT('%',#{params.shhf},'%')
+            </if>
+        </where>
+        order by a.id desc
+    </select>
+
+
+
+	<select id="selectListVO"
+		resultType="com.entity.vo.ShangpinpingjiaVO" >
+		SELECT * FROM shangpinpingjia  shangpinpingjia         
+        <where> 1=1 ${ew.sqlSegment}</where>
+	</select>
+	
+	<select id="selectVO"
+		resultType="com.entity.vo.ShangpinpingjiaVO" >
+		SELECT  shangpinpingjia.* FROM shangpinpingjia  shangpinpingjia 	
+ 		<where> 1=1 ${ew.sqlSegment}</where>
+	</select>
+
+
+	<select id="selectView"
+		resultType="com.entity.view.ShangpinpingjiaView" >
+		SELECT * FROM shangpinpingjia  shangpinpingjia <where> 1=1 ${ew.sqlSegment}</where>
+	</select>
+	
+</mapper>
